@@ -23,21 +23,38 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Debug toolbar
+    'debug_toolbar',
+    # CORS headers
+    'corsheaders',
+    # DRF
+    'rest_framework',
+
     # my apps
-    'core.apps.CoreConfig',
+    'apps.core.apps.CoreConfig',
+    'apps.authentication.apps.AuthenticationConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # CORS headers
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # django debug toolbar
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
+# django debug toolbar
+INTERNAL_IPS = ['127.0.0.1']
+
 ROOT_URLCONF = 'project.urls'
+
+WSGI_APPLICATION = 'project.wsgi.application'
 
 TEMPLATES = [
     {
@@ -55,8 +72,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': env.db('SQLITE_URL', default='sqlite:///db.sqlite3')
@@ -77,14 +92,55 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# setup custom user
+AUTH_USER_MODEL = 'authentication.CustomUser'
+
+# setup i18n
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+# setup static files
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'apps/core/static'),
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# setup logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler'
+        }
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG'
+    }
+}
+
+# setup DRF
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+# CORS headers
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:9999",
+    "http://127.0.0.1:9999",
+]
+
+# CORS headers
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:9999',
+]
