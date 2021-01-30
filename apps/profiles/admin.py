@@ -1,27 +1,23 @@
 from django.contrib import admin
 
-from .models import Profile
-from .models import ProfileType
+from .models import PersonProfile, CompanyProfile
 
 
-@admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display_links = ('last_name',)
-    ordering = ['id']
+@admin.register(PersonProfile)
+class PersonProfileAdmin(admin.ModelAdmin):
     list_display = (
         'id',
+        'auth_user',
         'first_name',
         'last_name',
         'gender',
+        'age',
     )
+    list_filter = ('auth_user',)
 
 
-@admin.register(ProfileType)
-class ProfileTypeAdmin(admin.ModelAdmin):
-    list_display_links = ('title',)
-    ordering = ['id']
-    list_display = (
-        'id',
-        'title',
-        'description'
-    )
+@admin.register(CompanyProfile)
+class CompanyProfileAdmin(admin.ModelAdmin):
+    list_display = ('id', 'auth_user', 'name', 'description', 'address')
+    list_filter = ('auth_user',)
+    search_fields = ('name',)

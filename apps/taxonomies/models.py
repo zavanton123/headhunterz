@@ -1,8 +1,10 @@
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 
+from apps.core.models import TimeTrackedModel
 
-class Category(models.Model):
+
+class Category(TimeTrackedModel):
     name = models.CharField(
         unique=True,
         max_length=100,
@@ -18,7 +20,7 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 
-class Tag(models.Model):
+class Tag(TimeTrackedModel):
     name = models.CharField(
         unique=True,
         max_length=100,
