@@ -40,6 +40,7 @@ urlpatterns = [
     path('api/profiles/', include('apps.profiles.urls')),
     path('api/taxonomies/', include('apps.taxonomies.urls')),
     path('taxonomies/', include('apps.taxonomies.myadmin.urls')),
+    path('api/jobs/', include('apps.jobs.urls')),
 ]
 
 # urls.py
