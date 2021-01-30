@@ -37,6 +37,7 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('api/accounts/', include('apps.authentication.urls')),
     path('accounts/', include('apps.authentication.myadmin.urls')),
+    path('api/profiles/', include('apps.profiles.urls')),
 ]
 
 # urls.py
