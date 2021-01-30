@@ -22,18 +22,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
-    # Debug toolbar
+    # third party apps
+    'django_extensions',
     'debug_toolbar',
-    # CORS headers
     'corsheaders',
-    # DRF
     'rest_framework',
+    'djoser',
+    'drf_yasg',
 
     # my apps
     'apps.core.apps.CoreConfig',
     'apps.authentication.apps.AuthenticationConfig',
 ]
+
+# setup sites framework,  points to a site id (in the table django_site)
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -45,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # enable optional sites framework middleware (to access 'request.site')
+    'django.contrib.sites.middleware.CurrentSiteMiddleware',
     # django debug toolbar
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
@@ -93,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # setup custom user
-AUTH_USER_MODEL = 'authentication.CustomUser'
+AUTH_USER_MODEL = 'authentication.AuthUser'
 
 # setup i18n
 LANGUAGE_CODE = 'en-us'
@@ -109,6 +116,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'apps/core/static'),
 ]
 
+# setup media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -131,7 +139,10 @@ LOGGING = {
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
 }
 
 # CORS headers
@@ -144,3 +155,20 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:9999',
 ]
+
+# setup simple jwt
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+}
+
+# djoser settings
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': 'username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': 'activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}
+
+# console email backend for debugging (replace by an actual backend)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

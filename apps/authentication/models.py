@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
-class CustomUserManager(BaseUserManager):
+class AuthUserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, username, email, password, **extra_fields):
@@ -64,7 +64,7 @@ class CustomUserManager(BaseUserManager):
         return self.none()
 
 
-class CustomUser(AbstractBaseUser, PermissionsMixin):
+class AuthUser(AbstractBaseUser, PermissionsMixin):
     username_validator = UnicodeUsernameValidator()
 
     username = models.CharField(
@@ -97,7 +97,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     hobby = models.CharField(max_length=100)
 
-    objects = CustomUserManager()
+    objects = AuthUserManager()
 
     EMAIL_FIELD = 'email'
     USERNAME_FIELD = 'username'
