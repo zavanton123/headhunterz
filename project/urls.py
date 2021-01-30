@@ -38,6 +38,8 @@ urlpatterns = [
     path('api/accounts/', include('apps.authentication.urls')),
     path('accounts/', include('apps.authentication.myadmin.urls')),
     path('api/profiles/', include('apps.profiles.urls')),
+    path('api/taxonomies/', include('apps.taxonomies.urls')),
+    path('taxonomies/', include('apps.taxonomies.myadmin.urls')),
 ]
 
 # urls.py

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'apps.core.apps.CoreConfig',
     'apps.authentication.apps.AuthenticationConfig',
     'apps.profiles.apps.ProfilesConfig',
+    'apps.taxonomies.apps.TaxonomiesConfig',
 ]
 
 # setup sites framework,  points to a site id (in the table django_site)
