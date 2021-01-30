@@ -31,8 +31,12 @@ class Vacancy(TimeTrackedModel):
     )
     candidates = models.ManyToManyField(
         to='profiles.PersonProfile',
-        related_name='vacancies',
+        related_name='applied_vacancies',
         through='Application',
+    )
+    favorites = models.ManyToManyField(
+        to='profiles.PersonProfile',
+        related_name='favorite_vacancies',
     )
     type = models.ForeignKey(
         to='VacancyType',
