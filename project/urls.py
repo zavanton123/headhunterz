@@ -35,12 +35,10 @@ urlpatterns = [
 
     # my apps
     path('', include('apps.core.urls')),
-    path('api/accounts/', include('apps.authentication.urls')),
-    path('accounts/', include('apps.authentication.myadmin.urls')),
-    path('api/profiles/', include('apps.profiles.urls')),
-    path('api/taxonomies/', include('apps.taxonomies.urls')),
-    path('taxonomies/', include('apps.taxonomies.myadmin.urls')),
-    path('api/jobs/', include('apps.jobs.urls')),
+    path('api/', include('apps.authentication.urls')),
+    path('api/', include('apps.profiles.urls')),
+    path('api/', include('apps.taxonomies.urls')),
+    path('api/', include('apps.jobs.urls')),
 ]
 
 # urls.py
