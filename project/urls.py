@@ -35,9 +35,9 @@ urlpatterns = [
 
     # my apps
     path('', include('apps.core.urls')),
-    path('api/', include('apps.authentication.urls')),
-    path('api/', include('apps.profiles.urls')),
     path('api/', include('apps.taxonomies.urls')),
+    path('api/', include('apps.profiles.urls')),
+    path('api/', include('apps.authentication.urls')),
     path('api/', include('apps.jobs.urls')),
 ]
 
