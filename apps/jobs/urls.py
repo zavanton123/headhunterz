@@ -1,9 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
-from apps.jobs.views import job_demo
+from apps.jobs.views import VacancyTypeViewSet
 
 app_name = 'jobs'
 
+router = routers.DefaultRouter()
+router.register(r'types', VacancyTypeViewSet, basename='vacancy-types')
+
 urlpatterns = [
-    path('', job_demo, name='jobdemo'),
+    path('vacancies/', include(router.urls)),
 ]

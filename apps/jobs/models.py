@@ -37,6 +37,8 @@ class Vacancy(TimeTrackedModel):
     favorites = models.ManyToManyField(
         to='profiles.PersonProfile',
         related_name='favorite_vacancies',
+        null=True,
+        blank=True,
     )
     type = models.ForeignKey(
         to='VacancyType',

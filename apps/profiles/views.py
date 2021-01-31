@@ -45,6 +45,17 @@ class CompaniesApiView(generics.ListCreateAPIView):
             return CreateCompanySerializer
         return CompanySerializer
 
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        data = {
+            'result': 'updated'
+        }
+        return Response(
+            data=data,
+            status=status.HTTP_201_CREATED,
+            headers=self.get_success_headers(response.data)
+        )
+
 
 class CompanyApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CompanyProfile.objects.all()
