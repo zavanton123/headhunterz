@@ -2,8 +2,8 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 
 from apps.authentication.permissions import IsSuperUserOrReadOnly
-from apps.jobs.models import VacancyType
-from apps.jobs.serializers import VacancyTypeSerializer
+from apps.jobs.models import VacancyType, VacancyStatus
+from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer
 
 
 class VacancyTypeViewSet(viewsets.ModelViewSet):
@@ -19,3 +19,9 @@ class VacancyTypeViewSet(viewsets.ModelViewSet):
     def update(self, request, *args, **kwargs):
         super().update(request, *args, **kwargs)
         return Response(status=status.HTTP_200_OK)
+
+
+class VacancyStatusViewSet(viewsets.ModelViewSet):
+    queryset = VacancyStatus.objects.all()
+    serializer_class = VacancyStatusSerializer
+    permission_classes = [IsSuperUserOrReadOnly]
