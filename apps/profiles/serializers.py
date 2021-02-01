@@ -10,14 +10,12 @@ log = logging.getLogger(__name__)
 
 
 class PersonSerializer(serializers.ModelSerializer):
-    username = serializers.SerializerMethodField()
-    email = serializers.SerializerMethodField()
-
-    def get_username(self, person, *args, **kwargs):
-        return person.auth_user.username
-
-    def get_email(self, person, *args, **kwargs):
-        return person.auth_user.email
+    username = serializers.CharField(
+        source='auth_user.username',
+    )
+    email = serializers.CharField(
+        source='auth_user.email',
+    )
 
     class Meta:
         model = PersonProfile
@@ -71,13 +69,13 @@ class CreatePersonSerializer(serializers.Serializer):
         person = PersonProfile.objects.create(
             first_name=validated_data.get('first_name'),
             last_name=validated_data.get('last_name'),
-            gender=self.get_gender(validated_data),
+            gender=self._get_gender(validated_data),
             age=validated_data.get('age'),
             auth_user=auth_user
         )
         return person
 
-    def get_gender(self, validated_data, default=''):
+    def _get_gender(self, validated_data, default=''):
         gender = validated_data.get('gender').lower()
         if gender == 'male':
             return 'M'
@@ -94,7 +92,7 @@ class CreatePersonSerializer(serializers.Serializer):
 
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.gender = self.get_gender(validated_data, default=instance.gender)
+        instance.gender = self._get_gender(validated_data, default=instance.gender)
         instance.age = validated_data.get('age', instance.age)
         instance.save()
         return instance

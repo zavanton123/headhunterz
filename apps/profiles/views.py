@@ -20,7 +20,7 @@ class PersonsApiView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         result = {
-            'result': 'success',
+            'result': 'created',
         }
         return Response(data=result, status=status.HTTP_201_CREATED)
 
