@@ -1,9 +1,13 @@
+import logging
+
 from rest_framework import serializers
 
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
 from apps.profiles.models import PersonProfile
 from apps.profiles.serializers import CompanySerializer
 from apps.taxonomies.serializers import CategorySerializer, TagSerializer
+
+log = logging.getLogger(__name__)
 
 
 class VacancyTypeSerializer(serializers.ModelSerializer):
@@ -20,6 +24,7 @@ class VacancyStatusSerializer(serializers.ModelSerializer):
 
 class VacancySerializer(serializers.ModelSerializer):
     company = CompanySerializer()
+    candidate_count = serializers.SerializerMethodField(method_name='_count_candidates')
     candidates = serializers.PrimaryKeyRelatedField(
         queryset=PersonProfile.objects.all(),
         many=True,
@@ -35,6 +40,9 @@ class VacancySerializer(serializers.ModelSerializer):
     category = CategorySerializer()
     tags = TagSerializer(many=True)
 
+    def _count_candidates(self, vacancy, *args, **kwargs):
+        return len(vacancy.candidates.all())
+
     class Meta:
         model = Vacancy
         fields = [
@@ -44,6 +52,7 @@ class VacancySerializer(serializers.ModelSerializer):
             'location',
             'description',
             'company',
+            'candidate_count',
             'candidates',
             'type_slug',
             'status_name',
