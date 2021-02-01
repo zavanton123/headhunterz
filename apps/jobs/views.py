@@ -1,9 +1,9 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics, permissions
 from rest_framework.response import Response
 
 from apps.authentication.permissions import IsSuperUserOrReadOnly
-from apps.jobs.models import VacancyType, VacancyStatus
-from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer
+from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
+from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer, VacancySerializer
 
 
 class VacancyTypeViewSet(viewsets.ModelViewSet):
@@ -25,3 +25,9 @@ class VacancyStatusViewSet(viewsets.ModelViewSet):
     queryset = VacancyStatus.objects.all()
     serializer_class = VacancyStatusSerializer
     permission_classes = [IsSuperUserOrReadOnly]
+
+
+class VacancyApiView(generics.ListAPIView):
+    queryset = Vacancy.objects.all()
+    serializer_class = VacancySerializer
+    permission_classes = [permissions.AllowAny]
