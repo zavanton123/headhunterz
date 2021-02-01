@@ -1,10 +1,10 @@
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 
-from apps.core.models import TimeTrackedModel
+from apps.core.models import TimestampedModel
 
 
-class Taxonomy(TimeTrackedModel):
+class Taxonomy(TimestampedModel):
     name = models.CharField(
         unique=True,
         max_length=100,

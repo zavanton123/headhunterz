@@ -1,10 +1,10 @@
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 
-from apps.core.models import TimeTrackedModel
+from apps.core.models import TimestampedModel
 
 
-class PersonProfile(TimeTrackedModel):
+class PersonProfile(TimestampedModel):
     class Gender(models.TextChoices):
         MALE = 'M',
         FEMALE = 'F',
@@ -39,7 +39,7 @@ class PersonProfile(TimeTrackedModel):
         return self.last_name
 
 
-class CompanyProfile(TimeTrackedModel):
+class CompanyProfile(TimestampedModel):
     auth_user = models.OneToOneField(
         to='authentication.AuthUser',
         on_delete=models.CASCADE,

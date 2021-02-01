@@ -1,10 +1,10 @@
 from django.db import models
 from django_extensions.db.fields import AutoSlugField
 
-from apps.core.models import TimeTrackedModel
+from apps.core.models import TimestampedModel
 
 
-class Vacancy(TimeTrackedModel):
+class Vacancy(TimestampedModel):
     title = models.CharField(
         max_length=500,
     )
@@ -91,7 +91,7 @@ class VacancyStatus(models.Model):
         verbose_name_plural = 'vacancy statuses'
 
 
-class Application(TimeTrackedModel):
+class Application(TimestampedModel):
     candidate = models.ForeignKey(
         to='profiles.PersonProfile',
         on_delete=models.CASCADE,
