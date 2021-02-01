@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
 from apps.profiles.models import CompanyProfile
+from apps.taxonomies.serializers import CategorySerializer
 
 
 class VacancyTypeSerializer(serializers.ModelSerializer):
@@ -37,6 +38,7 @@ class VacancySerializer(serializers.ModelSerializer):
     status_name = serializers.StringRelatedField(
         source='status',
     )
+    category = CategorySerializer()
 
     class Meta:
         model = Vacancy

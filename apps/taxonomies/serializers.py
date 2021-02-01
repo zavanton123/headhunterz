@@ -15,10 +15,12 @@ class TaxonomySerializer(serializers.ModelSerializer):
 class TagSerializer(TaxonomySerializer):
     class Meta:
         model = Tag
-        fields = ['name']
+        fields = ['name', 'slug']
+        read_only_fields = ('slug',)
 
 
 class CategorySerializer(TaxonomySerializer):
     class Meta:
         model = Category
-        fields = ['name']
+        fields = ['name', 'slug']
+        read_only_fields = ('slug',)
