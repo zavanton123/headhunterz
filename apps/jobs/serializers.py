@@ -22,6 +22,11 @@ class VacancySerializer(serializers.ModelSerializer):
         slug_field='slug',
         source='company',
     )
+    type_slug = serializers.SlugRelatedField(
+        queryset=VacancyType.objects.all(),
+        slug_field='slug',
+        source='type',
+    )
 
     class Meta:
         model = Vacancy
@@ -32,7 +37,7 @@ class VacancySerializer(serializers.ModelSerializer):
             'location',
             'description',
             'company_slug',
-            'type',
+            'type_slug',
             'status',
             'category',
             'tags',
