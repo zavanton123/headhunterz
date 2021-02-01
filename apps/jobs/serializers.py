@@ -17,15 +17,25 @@ class VacancyStatusSerializer(serializers.ModelSerializer):
 
 
 class VacancySerializer(serializers.ModelSerializer):
+    company_id = serializers.PrimaryKeyRelatedField(
+        queryset=CompanyProfile.objects.all(),
+        source='company',
+    )
     company_slug = serializers.SlugRelatedField(
         queryset=CompanyProfile.objects.all(),
         slug_field='slug',
         source='company',
     )
+    type_name = serializers.StringRelatedField(
+        source='type',
+    )
     type_slug = serializers.SlugRelatedField(
         queryset=VacancyType.objects.all(),
         slug_field='slug',
         source='type',
+    )
+    status_name = serializers.StringRelatedField(
+        source='status',
     )
 
     class Meta:
@@ -36,9 +46,11 @@ class VacancySerializer(serializers.ModelSerializer):
             'salary',
             'location',
             'description',
+            'company_id',
             'company_slug',
+            'type_name',
             'type_slug',
-            'status',
+            'status_name',
             'category',
             'tags',
         ]
