@@ -1,8 +1,9 @@
 from rest_framework import serializers
 
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
-from apps.profiles.models import CompanyProfile
-from apps.taxonomies.serializers import CategorySerializer
+from apps.profiles.models import PersonProfile
+from apps.profiles.serializers import CompanySerializer
+from apps.taxonomies.serializers import CategorySerializer, TagSerializer
 
 
 class VacancyTypeSerializer(serializers.ModelSerializer):
@@ -18,17 +19,10 @@ class VacancyStatusSerializer(serializers.ModelSerializer):
 
 
 class VacancySerializer(serializers.ModelSerializer):
-    company_id = serializers.PrimaryKeyRelatedField(
-        queryset=CompanyProfile.objects.all(),
-        source='company',
-    )
-    company_slug = serializers.SlugRelatedField(
-        queryset=CompanyProfile.objects.all(),
-        slug_field='slug',
-        source='company',
-    )
-    type_name = serializers.StringRelatedField(
-        source='type',
+    company = CompanySerializer()
+    candidates = serializers.PrimaryKeyRelatedField(
+        queryset=PersonProfile.objects.all(),
+        many=True,
     )
     type_slug = serializers.SlugRelatedField(
         queryset=VacancyType.objects.all(),
@@ -39,6 +33,7 @@ class VacancySerializer(serializers.ModelSerializer):
         source='status',
     )
     category = CategorySerializer()
+    tags = TagSerializer(many=True)
 
     class Meta:
         model = Vacancy
@@ -48,9 +43,8 @@ class VacancySerializer(serializers.ModelSerializer):
             'salary',
             'location',
             'description',
-            'company_id',
-            'company_slug',
-            'type_name',
+            'company',
+            'candidates',
             'type_slug',
             'status_name',
             'category',
