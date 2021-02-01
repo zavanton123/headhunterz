@@ -3,7 +3,8 @@ from rest_framework.response import Response
 
 from apps.authentication.permissions import IsSuperUserOrReadOnly
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
-from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer, VacancySerializer
+from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer, VacancySerializer, \
+    CreateVacancySerializer
 
 
 class VacancyTypeViewSet(viewsets.ModelViewSet):
@@ -27,7 +28,12 @@ class VacancyStatusViewSet(viewsets.ModelViewSet):
     permission_classes = [IsSuperUserOrReadOnly]
 
 
-class VacancyApiView(generics.ListAPIView):
+class VacancyApiView(generics.ListCreateAPIView):
     queryset = Vacancy.objects.all()
     serializer_class = VacancySerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'POST':
+            return CreateVacancySerializer
+        return VacancySerializer
