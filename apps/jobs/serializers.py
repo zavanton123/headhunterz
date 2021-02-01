@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
+from apps.profiles.models import CompanyProfile
 
 
 class VacancyTypeSerializer(serializers.ModelSerializer):
@@ -16,16 +17,21 @@ class VacancyStatusSerializer(serializers.ModelSerializer):
 
 
 class VacancySerializer(serializers.ModelSerializer):
-    company = serializers.StringRelatedField()
+    company_slug = serializers.SlugRelatedField(
+        queryset=CompanyProfile.objects.all(),
+        slug_field='slug',
+        source='company',
+    )
 
     class Meta:
         model = Vacancy
         fields = [
+            'id',
             'title',
             'salary',
             'location',
             'description',
-            'company',
+            'company_slug',
             'type',
             'status',
             'category',
