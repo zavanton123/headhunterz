@@ -1,0 +1,2139 @@
+{
+	"info": {
+		"_postman_id": "faa4cc36-42c6-4186-8299-446a6c0446a4",
+		"name": "HeadHunterz",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "jwt",
+			"item": [
+				{
+					"name": "JWT create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\", \n    \"username\": \"{{login_username}}\", \n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jwt/create/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jwt",
+								"create",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "JWT create",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{email}}\", \n    \"username\": \"{{login_username}}\", \n    \"password\": \"{{password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/jwt/create/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"jwt",
+										"create",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"refresh\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTYxMjUzNDk2NiwianRpIjoiNWIxMTAwYmU3ZTAyNDcxOWFjMzk3NTM2NjI3NWUyZDgiLCJ1c2VyX2lkIjoxfQ.se5Y3vY7vAT9wQ11fjNAKy-vIrXmNqvK_cXDlDSV5Ts\",\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEyNTM0OTY2LCJqdGkiOiIwYTcwOTY5OTdkNTE0YjE5OTE3ZjViODMzMWFmMDc3OCIsInVzZXJfaWQiOjF9.-k1V0h-qzj5YByx8W3nWwEfyT9c4ptGXgZa7CWMUaSw\"\n}"
+						}
+					]
+				},
+				{
+					"name": "JWT refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refresh\": \"{{refresh}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jwt/refresh/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jwt",
+								"refresh",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "JWT refresh",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refresh\": \"{{refresh}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/jwt/refresh/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"jwt",
+										"refresh",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"access\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjEyNTM2MjU0LCJqdGkiOiJkNGI0NmY5OGRiMjE0M2MyOTE3YmUyOGYyMTkyNzAwZSIsInVzZXJfaWQiOjF9.pOLmxRqA3KSNJzdM4hgHlqzm1f7YOQSs056b5ofWNlg\"\n}"
+						}
+					]
+				},
+				{
+					"name": "JWT verify",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"token\": \"{{access}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/jwt/verify/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"jwt",
+								"verify",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "JWT verify",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"{{access}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/jwt/verify/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"jwt",
+										"verify",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\", \n    \"username\": \"{{username}}\", \n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\": \"{{uid}}\", \n    \"token\": \"{{activation_token}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/activation/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"activation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend user activation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/resend_activation/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"resend_activation",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset user password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/reset_password/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"reset_password",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset user password confirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\": \"{{uid}}\", \n    \"token\": \"{{activation_token}}\",\n    \"new_password\": \"{{new_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/reset_password_confirm/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"reset_password_confirm",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset username",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/reset_username/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"reset_username",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset username confirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uid\": \"{{uid}}\", \n    \"token\": \"{{activation_token}}\",\n    \"new_username\": \"{{new_username}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/reset_username_confirm/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"reset_username_confirm",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"new_password\": \"{{new_password}}\", \n    \"current_password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/set_password/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"set_password",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set username",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"new_username\": \"{{new_username}}\", \n    \"current_password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/set_username/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"set_username",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view myself",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/me",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update myself",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{new_email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/me/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch myself",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{new_email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/me/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete myself",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/me/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"me",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "view user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{new_email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "patch user",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"{{new_email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/{{user_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{user_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"item": [
+				{
+					"name": "show all tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tags/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "show all tags",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/tags/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"tags",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"CSharp\",\n        \"slug\": \"csharp\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Kotlin\",\n        \"slug\": \"kotlin\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Java\",\n        \"slug\": \"java\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"CPython\",\n        \"slug\": \"cpython\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "create tag",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{tag_name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/tags/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create tag",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{tag_name}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/tags/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"tags",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"name\": \"CPython\",\n    \"slug\": \"cpython\"\n}"
+						}
+					]
+				},
+				{
+					"name": "show one tag",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tags/:tag_id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								":tag_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "tag_id",
+									"value": "{{tag_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "show one tag",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/tags/:tag_id/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"tags",
+										":tag_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "tag_id",
+											"value": "{{tag_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"CSharp\",\n    \"slug\": \"csharp\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update tag",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{new_tag_name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/tags/:update_tag_id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								":update_tag_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "update_tag_id",
+									"value": "{{update_tag_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update tag",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{new_tag_name}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/tags/:update_tag_id/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"tags",
+										":update_tag_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "update_tag_id",
+											"value": "{{update_tag_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Python\",\n    \"slug\": \"python\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete tag",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/tags/:delete_tag_id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								":delete_tag_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "delete_tag_id",
+									"value": "{{delete_tag_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete tag",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/tags/:delete_tag_id/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"tags",
+										":delete_tag_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "delete_tag_id",
+											"value": "{{delete_tag_id}}"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "categories",
+			"item": [
+				{
+					"name": "show all categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/categories/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "show all categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/categories/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"CS\",\n        \"slug\": \"cs\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Top Management\",\n        \"slug\": \"top-management\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "create category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{category_name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/categories/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "create category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{category_name}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/categories/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										""
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 4,\n    \"name\": \"Some Category\",\n    \"slug\": \"some-category\"\n}"
+						}
+					]
+				},
+				{
+					"name": "show one category",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/categories/:category_id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":category_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "category_id",
+									"value": "{{category_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "show one category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/categories/:category_id/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":category_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "category_id",
+											"value": "{{category_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"CS\",\n    \"slug\": \"cs\"\n}"
+						}
+					]
+				},
+				{
+					"name": "update category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{new_category_name}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/categories/:update_category_id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":update_category_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "update_category_id",
+									"value": "{{update_category_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{new_category_name}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/categories/:update_category_id/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":update_category_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "update_category_id",
+											"value": "{{update_category_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"name\": \"Some New Category\",\n    \"slug\": \"some-new-category\"\n}"
+						}
+					]
+				},
+				{
+					"name": "delete category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/categories/:delete_category_id/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"categories",
+								":delete_category_id",
+								""
+							],
+							"variable": [
+								{
+									"key": "delete_category_id",
+									"value": "{{delete_category_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/categories/:delete_category_id/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"categories",
+										":delete_category_id",
+										""
+									],
+									"variable": [
+										{
+											"key": "delete_category_id",
+											"value": "{{delete_category_id}}"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "persons",
+			"item": [
+				{
+					"name": "show all persons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/persons/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show person",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/persons/{{person_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								"{{person_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create person",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{$randomUserName}}\", \n    \"email\" : \"{{$randomEmail}}\",\n    \"password\": \"{{password}}\", \n    \"first_name\": \"{{$randomFirstName}}\", \n    \"last_name\": \"{{$randomLastName}}\", \n    \"gender\": \"{{gender}}\", \n    \"age\": {{age}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/persons/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update person",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"mike_tyson2\", \n    \"email\" : \"{{$randomEmail}}\",\n    \"password\": \"{{password}}\", \n    \"first_name\": \"Mike2\", \n    \"last_name\": \"{{$randomLastName}}\", \n    \"gender\": \"{{gender}}\", \n    \"age\": {{age}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/persons/{{person_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								"{{person_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete person",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/persons/{{person_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"persons",
+								"{{person_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "companies",
+			"item": [
+				{
+					"name": "show all companies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/companies/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show company",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/companies/{{company_id}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{company_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update company",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"great_company\",\n    \"email\": \"{{$randomEmail}}\", \n    \"password\": \"{{password}}\",\n    \"name\": \"Greate Company\", \n    \"description\": \"{{new_company_description}}\",\n    \"website\": \"{{$randomUrl}}\",\n    \"address\": \"{{$randomStreetAddress}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/companies/{{company_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{company_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete company",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/companies/{{company_id}}/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"{{company_id}}",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{new_company_username}}\",\n    \"email\": \"{{$randomEmail}}\", \n    \"password\": \"{{password}}\",\n    \"name\": \"{{new_company_name}}\", \n    \"description\": \"{{new_company_description}}\",\n    \"website\": \"{{$randomUrl}}\",\n    \"address\": \"{{$randomStreetAddress}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/companies/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vacancies",
+			"item": [
+				{
+					"name": "types",
+					"item": [
+						{
+							"name": "show all vacancy types",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancies/types/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"types",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create vacancy type",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Internship\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/vacancies/types/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"types",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show vacancy type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancies/types/1/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"types",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update vacancy type",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Demo2\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/vacancies/types/4/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"types",
+										"4",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete vacancy type",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/vacancies/types/4/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"types",
+										"4",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "statuses",
+					"item": [
+						{
+							"name": "show all vacancy statuses",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancies/statuses/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"statuses",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create vacancy status",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Pending\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/vacancies/statuses/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"statuses",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show vacancy status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/vacancies/statuses/1/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"statuses",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update vacancy status",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Unfilled\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/vacancies/statuses/1/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"statuses",
+										"1",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete vacancy status",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "JWT {{access}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/api/vacancies/statuses/3/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"vacancies",
+										"statuses",
+										"3",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create vacancy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Kotlin Developer\", \n    \"salary\": 4500.00,\n    \"location\": \"Moscow, Red Square, 1\",\n    \"description\": \"This is a great job for you!\", \n    \"type\": \"full-time\", \n    \"category\": \"cs\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/vacancies/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"vacancies",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show all vacancies",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "JWT {{access}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/api/vacancies",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"vacancies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
