@@ -7,7 +7,7 @@ from rest_framework.generics import get_object_or_404
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
 from apps.profiles.models import PersonProfile, CompanyProfile
 from apps.profiles.serializers import CompanySerializer
-from apps.taxonomies.models import Category
+from apps.taxonomies.models import Category, Tag
 from apps.taxonomies.serializers import CategorySerializer, TagSerializer
 
 log = logging.getLogger(__name__)
@@ -84,6 +84,11 @@ class CreateVacancySerializer(serializers.Serializer):
         read_only=True,
     )
     category = serializers.CharField()
+    tags = serializers.SlugRelatedField(
+        queryset=Tag.objects.all(),
+        slug_field='slug',
+        many=True,
+    )
 
     class Meta:
         model = Vacancy
@@ -97,7 +102,7 @@ class CreateVacancySerializer(serializers.Serializer):
             'type',
             'status',
             'category',
-            # 'tags',
+            'tags',
         ]
 
     def create(self, validated_data):
@@ -116,13 +121,12 @@ class CreateVacancySerializer(serializers.Serializer):
         description = validated_data.get('description', None)
         type_slug = validated_data.get('type', None)
         category_slug = validated_data.get('category', None)
+        tags = validated_data.get('tags', None)
 
         vacancy_status = VacancyStatus.objects.filter(title__icontains='unfilled').first()
         vacancy_type = get_object_or_404(VacancyType, slug=type_slug)
-
         category = get_object_or_404(Category, slug=category_slug)
-
-        return Vacancy.objects.create(
+        vacancy = Vacancy.objects.create(
             title=title,
             salary=salary,
             location=location,
@@ -130,8 +134,9 @@ class CreateVacancySerializer(serializers.Serializer):
             company=company,
             type=vacancy_type,
             status=vacancy_status,
-            category=category
-        )
+            category=category)
+        vacancy.tags.set(tags)
+        return vacancy
 
     def update(self, instance, validated_data):
         pass
