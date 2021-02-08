@@ -9,6 +9,16 @@ from apps.profiles.models import PersonProfile, CompanyProfile
 log = logging.getLogger(__name__)
 
 
+def get_gender(validated_data, default=''):
+    gender = validated_data.get('gender').lower()
+    if gender == 'male':
+        return 'M'
+    elif gender == 'female':
+        return 'F'
+    else:
+        return default
+
+
 class PersonSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
         source='auth_user.username',
@@ -69,20 +79,11 @@ class CreatePersonSerializer(serializers.Serializer):
         person = PersonProfile.objects.create(
             first_name=validated_data.get('first_name'),
             last_name=validated_data.get('last_name'),
-            gender=self._get_gender(validated_data),
+            gender=get_gender(validated_data),
             age=validated_data.get('age'),
             auth_user=auth_user
         )
         return person
-
-    def _get_gender(self, validated_data, default=''):
-        gender = validated_data.get('gender').lower()
-        if gender == 'male':
-            return 'M'
-        elif gender == 'female':
-            return 'F'
-        else:
-            return default
 
     def update(self, instance, validated_data):
         user = instance.auth_user
@@ -92,7 +93,37 @@ class CreatePersonSerializer(serializers.Serializer):
 
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
-        instance.gender = self._get_gender(validated_data, default=instance.gender)
+        instance.gender = get_gender(validated_data, default=instance.gender)
+        instance.age = validated_data.get('age', instance.age)
+        instance.save()
+        return instance
+
+
+class UpdatePersonSerializer(serializers.ModelSerializer):
+    gender = serializers.CharField(
+        max_length=6,
+    )
+
+    class Meta:
+        model = PersonProfile
+        fields = [
+            'first_name',
+            'last_name',
+            'gender',
+            'age',
+        ]
+        write_only_fields = [
+            'first_name',
+            'last_name',
+            'gender',
+            'age',
+        ]
+
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.last_name = validated_data.get('last_name', instance.last_name)
+        gender = get_gender(validated_data, default=instance.gender)
+        instance.gender = gender
         instance.age = validated_data.get('age', instance.age)
         instance.save()
         return instance
