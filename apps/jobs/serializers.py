@@ -65,6 +65,12 @@ class VacancySerializer(serializers.ModelSerializer):
 
 
 class CreateVacancySerializer(serializers.Serializer):
+    id = serializers.CharField(
+        read_only=True,
+    )
+    slug = serializers.CharField(
+        read_only=True,
+    )
     title = serializers.CharField()
     salary = serializers.DecimalField(
         max_digits=20,
@@ -73,16 +79,23 @@ class CreateVacancySerializer(serializers.Serializer):
     location = serializers.CharField()
     description = serializers.CharField()
     type = serializers.CharField()
+    status = serializers.CharField(
+        source='status.title',
+        read_only=True,
+    )
     category = serializers.CharField()
 
     class Meta:
         model = Vacancy
         fields = [
+            'id',
+            'slug',
             'title',
             'salary',
             'location',
             'description',
             'type',
+            'status',
             'category',
             # 'tags',
         ]
