@@ -46,6 +46,6 @@ class ApplicationApiView(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly | IsPersonProfile]
 
     def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        headers = self.get_success_headers(response.data)
-        return Response(status=status.HTTP_201_CREATED, headers=headers)
+        # response = super().create(request, *args, **kwargs)
+        # headers = self.get_success_headers(response.data)
+        return super().create(request, *args, **kwargs)
