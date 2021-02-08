@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import get_object_or_404
 
-from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
+from apps.jobs.models import VacancyType, VacancyStatus, Vacancy, ApplicationStatus, Application
 from apps.profiles.models import PersonProfile, CompanyProfile
 from apps.profiles.serializers import CompanySerializer
 from apps.taxonomies.models import Category, Tag
@@ -137,6 +137,47 @@ class CreateVacancySerializer(serializers.Serializer):
             category=category)
         vacancy.tags.set(tags)
         return vacancy
+
+    def update(self, instance, validated_data):
+        pass
+
+
+class CreateApplicationSerializer(serializers.Serializer):
+    application_id = serializers.CharField(
+        read_only=True,
+    )
+    vacancy_id = serializers.CharField()
+    candidate_id = serializers.CharField(
+        read_only=True,
+    )
+    feedback = serializers.CharField(
+        read_only=True,
+    )
+    status = serializers.CharField(
+        source='status.title',
+        read_only=True,
+    )
+
+    def create(self, validated_data):
+        request = self.context.get('request', None)
+        if request is None:
+            raise ValidationError('request must not be None')
+        user = request.user
+        if not user.is_authenticated:
+            raise ValidationError('user must be logged in')
+        person = PersonProfile.objects.get(auth_user=user)
+
+        vacancy_id = validated_data.get('vacancy_id', None)
+        vacancy = get_object_or_404(Vacancy, pk=vacancy_id)
+        status = ApplicationStatus.objects.filter(title__icontains='pending').first()
+
+        application = Application.objects.create(
+            candidate=person,
+            vacancy=vacancy,
+            feedback="",
+            status=status
+        )
+        return application
 
     def update(self, instance, validated_data):
         pass

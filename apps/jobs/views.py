@@ -2,10 +2,10 @@ from rest_framework import viewsets, status, generics, permissions
 from rest_framework.response import Response
 
 from apps.authentication.permissions import IsSuperUserOrReadOnly
-from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
+from apps.jobs.models import VacancyType, VacancyStatus, Vacancy, Application
 from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer, VacancySerializer, \
-    CreateVacancySerializer
-from apps.profiles.permissions import IsCompanyProfile
+    CreateVacancySerializer, CreateApplicationSerializer
+from apps.profiles.permissions import IsCompanyProfile, IsPersonProfile
 
 
 class VacancyTypeViewSet(viewsets.ModelViewSet):
@@ -38,3 +38,14 @@ class VacancyApiView(generics.ListCreateAPIView):
         if self.request.method == 'POST':
             return CreateVacancySerializer
         return VacancySerializer
+
+
+class ApplicationApiView(generics.CreateAPIView):
+    queryset = Application.objects.all()
+    serializer_class = CreateApplicationSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly | IsPersonProfile]
+
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        headers = self.get_success_headers(response.data)
+        return Response(status=status.HTTP_201_CREATED, headers=headers)
