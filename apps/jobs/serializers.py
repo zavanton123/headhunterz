@@ -2,6 +2,7 @@ import logging
 
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from rest_framework.generics import get_object_or_404
 
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
 from apps.profiles.models import PersonProfile, CompanyProfile
@@ -70,16 +71,9 @@ class CreateVacancySerializer(serializers.Serializer):
         decimal_places=2,
     )
     location = serializers.CharField()
-    description = serializers.TimeField()
+    description = serializers.CharField()
     type = serializers.CharField()
-    category = serializers.SlugRelatedField(
-        queryset=Category.objects.all(),
-        slug_field='slug',
-    )
-
-    # def _create_type(self, *args, **kwargs):
-    #     log.debug('zavanton - _create_type')
-    #     return 1
+    category = serializers.CharField()
 
     class Meta:
         model = Vacancy
@@ -94,7 +88,6 @@ class CreateVacancySerializer(serializers.Serializer):
         ]
 
     def create(self, validated_data):
-        log.debug('zavanton - create')
         request = self.context.get('request', None)
         if request is None:
             raise ValidationError('request must not be None')
@@ -103,11 +96,29 @@ class CreateVacancySerializer(serializers.Serializer):
             raise ValidationError('user must be logged in')
         company = CompanyProfile.objects.get(auth_user=user)
 
+        log.debug('zavanton - create')
+        title = validated_data.get('title', None)
+        salary = validated_data.get('salary', None)
+        location = validated_data.get('location', None)
+        description = validated_data.get('description', None)
+        type_slug = validated_data.get('type', None)
+        category_slug = validated_data.get('category', None)
 
+        vacancy_status = VacancyStatus.objects.filter(title__icontains='unfilled').first()
+        vacancy_type = get_object_or_404(VacancyType, slug=type_slug)
 
-        # type_slug = validated_data.pop('type')
-        # vacancy_type = VacancyType.objects.filter(slug=type_slug).first()
-        #
-        # vacancy = Vacancy.objects.create(company=company, type=vacancy_type, **validated_data)
-        log.debug('zavanton - ')
-        return None
+        category = get_object_or_404(Category, slug=category_slug)
+
+        return Vacancy.objects.create(
+            title=title,
+            salary=salary,
+            location=location,
+            description=description,
+            company=company,
+            type=vacancy_type,
+            status=vacancy_status,
+            category=category
+        )
+
+    def update(self, instance, validated_data):
+        pass

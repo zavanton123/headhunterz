@@ -33,6 +33,8 @@ class Vacancy(TimestampedModel):
         to='profiles.PersonProfile',
         related_name='applied_vacancies',
         through='Application',
+        null=True,
+        blank=True,
     )
     favorites = models.ManyToManyField(
         to='profiles.PersonProfile',
@@ -59,6 +61,8 @@ class Vacancy(TimestampedModel):
     tags = models.ManyToManyField(
         to='taxonomies.Tag',
         related_name='vacancies',
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

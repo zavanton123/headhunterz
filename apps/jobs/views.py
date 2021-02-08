@@ -5,6 +5,7 @@ from apps.authentication.permissions import IsSuperUserOrReadOnly
 from apps.jobs.models import VacancyType, VacancyStatus, Vacancy
 from apps.jobs.serializers import VacancyTypeSerializer, VacancyStatusSerializer, VacancySerializer, \
     CreateVacancySerializer
+from apps.profiles.permissions import IsCompanyProfile
 
 
 class VacancyTypeViewSet(viewsets.ModelViewSet):
@@ -31,7 +32,7 @@ class VacancyStatusViewSet(viewsets.ModelViewSet):
 class VacancyApiView(generics.ListCreateAPIView):
     queryset = Vacancy.objects.all()
     serializer_class = VacancySerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly | IsCompanyProfile]
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
